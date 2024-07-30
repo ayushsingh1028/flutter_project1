@@ -52,8 +52,8 @@ class LoginPage extends StatelessWidget {
                         },
                         child: const Text('login'),
                         style: TextButton.styleFrom(
-                          foregroundColor: Colors.white,
-                        )),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.purple)),
                   ],
                 ),
               ),
