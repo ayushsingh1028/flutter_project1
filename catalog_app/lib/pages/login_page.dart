@@ -9,101 +9,130 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changeButton = false;
+  final _formKey = GlobalKey<FormState>();
+  moveToHome(BuildContext context) async {
+    if (_formKey.currentState?.validate() ?? false) {
+      setState(() {
+        changeButton = true;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      await Navigator.pushNamed(context, MyRoutes.homeRoutes);
+      setState(() {
+        changeButton = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
         color: Colors.white,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/images/logintwo.png",
-                fit: BoxFit.cover,
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Text(
-                "Welcome $name",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/images/login4.png",
+                  fit: BoxFit.fill,
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 32.0),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter username",
-                        labelText: "Username",
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Welcome $name",
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 32.0),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Enter username",
+                          labelText: "Username",
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Username canot be empty";
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          name = value;
+                          setState(() {});
+                        },
                       ),
-                      onChanged: (value) {
-                        name = value;
-                        setState(() {});
-                      },
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Enter password",
-                        labelText: "Password",
+                      TextFormField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: "Enter password",
+                          labelText: "Password",
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Password canot be empty";
+                          } else if (value.length < 6) {
+                            return "Password length should be at least 8";
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: 40.0,
-                    ),
+                      const SizedBox(
+                        height: 40.0,
+                      ),
 
-                    InkWell(
-                      onTap: () async {
-                        setState(() {
-                          changeButton = true;
-                        });
-                        await Future.delayed(Duration(seconds: 1));
-                        Navigator.pushNamed(context, MyRoutes.homeRoutes);
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(seconds: 1),
-                        width: changeButton ? 50 : 150,
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: changeButton
-                            ? Icon(
-                                Icons.done,
-                                color: Colors.white,
-                              )
-                            : Text(
-                                "Login",
-                                style: TextStyle(
+                      Material(
+                        color: Colors.deepPurple,
+                        borderRadius:
+                            BorderRadius.circular(changeButton ? 50 : 8),
+                        child: InkWell(
+                          onTap: () => moveToHome(context),
+                          child: AnimatedContainer(
+                            duration: Duration(seconds: 2),
+                            width: changeButton ? 50 : 150,
+                            height: 50,
+                            alignment: Alignment.center,
+                            child: changeButton
+                                ? Icon(
+                                    Icons.done,
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurple,
-                          borderRadius:
-                              BorderRadius.circular(changeButton ? 50 : 8),
+                                  )
+                                : Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                          ),
                         ),
                       ),
-                    ),
 
-                    // ElevatedButton(
-                    //   child: Text("Login"),
-                    //   style: TextButton.styleFrom(minimumSize: Size(150, 40)),
-                    //   onPressed: () {
-                    //     Navigator.pushNamed(context, MyRoutes.homeRoute);
-                    //   },
-                    // )
-                  ],
+                      Container(
+                        child: Text("Term and Condition[]"),
+                        alignment: Alignment.center,
+                      ),
+
+                      // ElevatedButton(
+                      //   child: Text("Login"),
+                      //   style: TextButton.styleFrom(minimumSize: Size(150, 40)),
+                      //   onPressed: () {
+                      //     Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      //   },
+                      // )
+                    ],
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ));
   }
