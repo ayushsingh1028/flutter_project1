@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.light,
       ),
-      // debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
 
-      initialRoute: "/",
+      initialRoute: MyRoutes.homeRoutes, //"/",
       routes: {
         "/": (context) => LoginPage(), // class both word are capital
         MyRoutes.homeRoutes: (context) => HomePage(),
