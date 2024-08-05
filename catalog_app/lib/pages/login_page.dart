@@ -101,11 +101,11 @@ class _LoginPageState extends State<LoginPage> {
                             height: 50,
                             alignment: Alignment.center,
                             child: changeButton
-                                ? Icon(
+                                ? const Icon(
                                     Icons.done,
                                     color: Colors.white,
                                   )
-                                : Text(
+                                : const Text(
                                     "Login",
                                     style: TextStyle(
                                         color: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -23,12 +24,12 @@ class MyDrawer extends StatelessWidget {
               child: UserAccountsDrawerHeader(
                 margin: EdgeInsets.zero,
                 decoration: BoxDecoration(color: Colors.blueGrey),
-                accountName: Text('Dam Dam'),
+                accountName: Text('Ayush Singh'),
                 accountEmail: Text('chintapak@gmail.com'),
                 currentAccountPicture: //Image.network(imageUrl),
                     SizedBox(
-                  height: 900,
-                  width: 900,
+                  height: 60,
+                  width: 60,
                   child: CircleAvatar(
                     radius: 20,
                     backgroundImage: NetworkImage(imageUrl),
@@ -43,7 +44,8 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Home',
-                textScaleFactor: 1.2,
+                textScaler: TextScaler.linear(1.2),
+                // textScaleFactor: 1.2,
                 style: TextStyle(color: Colors.black87),
               ),
             ),
@@ -54,7 +56,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text(
                 'Profile',
-                textScaleFactor: 1.2,
+                textScaler: TextScaler.linear(1.2),
                 style: TextStyle(color: Colors.black87),
               ),
             ),
@@ -68,7 +70,8 @@ class MyDrawer extends StatelessWidget {
               ),
               title: const Text(
                 'Email Me',
-                textScaleFactor: 1.2,
+                textScaler: TextScaler.linear(1.2),
+                //textScaleFactor: 1.2,  //this will be removed by flutter in future
                 style: TextStyle(color: Colors.black87),
               ),
             )
