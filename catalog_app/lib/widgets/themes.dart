@@ -6,7 +6,7 @@ class MyTheme {
         primarySwatch: Colors.red,
         fontFamily: GoogleFonts.lato().fontFamily,
         appBarTheme: const AppBarTheme(
-          color: Colors.white,
+          color: Colors.blueGrey,
           elevation: 0.0,
           iconTheme: IconThemeData(color: Colors.black),
           //texttheme : Theme.of(context).textTheme.apply(bodyColor: Colors.black),
